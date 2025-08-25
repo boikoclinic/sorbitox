@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NeuroCor - Презентація</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'xs': '475px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            overflow: hidden;
+            color: #1f2937;
+            letter-spacing: 0.3px;
+            word-spacing: 2px;
+        }
+        
+        .clinical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: -1;
+        }
+        
+        .hologram-effect {
+            position: relative;
+        }
+        
+        .hologram-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(0,255,255,0.1) 50%, transparent);
+            animation: scanLine 3s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes scanLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .modern-glow {
+            animation: modernPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes modernPulse {
+            0%, 100% { 
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% { 
+                transform: scale(1.02);
+                filter: brightness(1.1);
+            }
+        }
+        
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.6), rgba(16, 185, 129, 0.4), transparent);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(110vh) translateX(0) scale(0) rotate(0deg);
+                opacity: 0;
+                filter: hue-rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+                transform: translateY(90vh) translateX(10px) scale(0.5) rotate(45deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(50vh) translateX(25px) scale(1) rotate(180deg);
+                filter: hue-rotate(90deg);
+            }
+            90% {
+                opacity: 0.8;
+                transform: translateY(10vh) translateX(40px) scale(0.8) rotate(315deg);
+                filter: hue-rotate(180deg);
+            }
+            100% {
+                transform: translateY(-10vh) translateX(50px) scale(0) rotate(360deg);
+                opacity: 0;
+                filter: hue-rotate(270deg);
+            }
+        }
+        
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .matrix-char {
+            position: absolute;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            animation: matrixFall 3s linear infinite;
+        }
+        
+        @keyframes matrixFall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .slide {
+                height: auto;
+                min-height: 100vh;
+                padding: 60px 0 20px 0;
+            }
+            
+            .mobile-scroll {
+                height: auto;
+                min-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+        }
+        
+        .slide.active {
+            display: flex !important;
+            position: relative;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+            position: relative;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.05), transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.05), transparent 50%);
+            animation: subtleMove 8s ease-in-out infinite;
+        }
+        
+        @keyframes subtleMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.02); }
+        }
+        
+        .medical-gradient {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            position: relative;
+        }
+        
+        .medical-gradient::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.03), transparent 50%),
+                        radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.03), transparent 50%);
+            animation: medicalFloat 12s ease-in-out infinite;
+        }
+        
+        @keyframes medicalFloat {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(1deg) scale(1.01); }
+        }
+        
+        @keyframes medicalFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .clinical-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transform: translateY(0);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.3px;
+            word-spacing: 1px;
+            min-height: auto;
+            height: auto;
+        }
+        
+        .clinical-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .clinical-card:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: #3b82f6;
+            transform: translateY(-8px) scale(1.02);
+        }
+        
+        .clinical-card:hover::before {
+            left: 100%;
+        }
+        
+        .ingredient-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.4s ease;
+        }
+        
+        .ingredient-card:hover::before {
+            left: 100%;
+        }
+        
+        .ingredient-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.08),
+                0 0 0 1px rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .clinical-badge {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.3px;
+            word-spacing: 1px;
+        }
+        
+        .clinical-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .clinical-badge:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        .clinical-badge:hover::after {
+            opacity: 1;
+        }
+        
+        .medical-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .status-active { 
+            background: radial-gradient(circle, #10b981, #059669);
+            animation: statusPulse 2s infinite;
+        }
+        .status-warning { 
+            background: radial-gradient(circle, #f59e0b, #d97706);
+            animation: statusPulse 2.5s infinite;
+        }
+        .status-info { 
+            background: radial-gradient(circle, #3b82f6, #2563eb);
+            animation: statusPulse 1.8s infinite;
+        }
+        
+        @keyframes statusPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            }
+            50% { 
+                transform: scale(1.3);
+                box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            }
+        }
+        
+        .progress-bar {
+            animation: progressPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes progressPulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        .counter {
+            animation: counterGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes counterGlow {
+            from { 
+                text-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+            }
+            to { 
+                text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+            }
+        }
+        
+        .brain-waves {
+            animation: brainActivity 4s ease-in-out infinite;
+        }
+        
+        @keyframes brainActivity {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
+        }
+        
+        .wave-1 { animation: waveMove1 3s ease-in-out infinite; }
+        .wave-2 { animation: waveMove2 2.5s ease-in-out infinite; }
+        .wave-3 { animation: waveMove3 3.5s ease-in-out infinite; }
+        
+        @keyframes waveMove1 {
+            0%, 100% { stroke-dasharray: 0, 300; }
+            50% { stroke-dasharray: 150, 150; }
+        }
+        
+        @keyframes waveMove2 {
+            0%, 100% { stroke-dasharray: 0, 300; }
+            50% { stroke-dasharray: 100, 200; }
+        }
+        
+        @keyframes waveMove3 {
+            0%, 100% { stroke-dasharray: 0, 300; }
+            50% { stroke-dasharray: 200, 100; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.4s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(40px) scale(0.9) rotateX(10deg); 
+                filter: blur(10px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1) rotateX(0deg); 
+                filter: blur(0px);
+            }
+        }
+        
+        .staggered-fade {
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-80px) scale(0.8) rotateY(15deg); 
+                filter: blur(5px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1) rotateY(0deg); 
+                filter: blur(0px);
+            }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @keyframes slideInRight {
+            from { 
+                opacity: 0; 
+                transform: translateX(80px) scale(0.8) rotateY(-15deg); 
+                filter: blur(5px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1) rotateY(0deg); 
+                filter: blur(0px);
+            }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes bounceIn {
+            0% { 
+                opacity: 0; 
+                transform: scale(0.1) rotate(-180deg) translateY(-100px); 
+                filter: hue-rotate(180deg);
+            }
+            60% { 
+                opacity: 1; 
+                transform: scale(1.3) rotate(15deg) translateY(-10px); 
+                filter: hue-rotate(0deg);
+            }
+            80% {
+                transform: scale(0.9) rotate(-5deg) translateY(5px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: scale(1) rotate(0deg) translateY(0px); 
+                filter: hue-rotate(0deg);
+            }
+        }
+        
+        .rotate-in {
+            animation: rotateIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-270deg) scale(0.2); }
+            to { opacity: 1; transform: rotate(0deg) scale(1); }
+        }
+        
+        .zoom-in {
+            animation: zoomIn 0.3s ease-out;
+        }
+        
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .flip-in {
+            animation: flipIn 0.6s ease-out;
+        }
+        
+        @keyframes flipIn {
+            from { opacity: 0; transform: rotateY(-90deg) scale(0.8); }
+            to { opacity: 1; transform: rotateY(0deg) scale(1); }
+        }
+        
+        .float {
+            animation: float 2s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(1deg); }
+            75% { transform: translateY(-5px) rotate(-1deg); }
+        }
+        
+        .indication-card-enter {
+            animation: indicationCardEnter 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        @keyframes indicationCardEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.8) rotateX(20deg);
+                filter: blur(10px);
+            }
+            60% {
+                opacity: 0.8;
+                transform: translateY(-5px) scale(1.05) rotateX(-2deg);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+                filter: blur(0px);
+            }
+        }
+        
+        .complex-treatment-enter {
+            animation: complexTreatmentEnter 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        @keyframes complexTreatmentEnter {
+            0% {
+                opacity: 0;
+                transform: translateX(60px) scale(0.9) rotateY(15deg);
+                filter: blur(8px);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translateX(-10px) scale(1.02) rotateY(-3deg);
+                filter: blur(3px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1) rotateY(0deg);
+                filter: blur(0px);
+            }
+        }
+        
+        .stat-counter {
+            animation: statPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes statPulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+            }
+        }
+        
+        .indication-icon-float {
+            animation: indicationIconFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes indicationIconFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-6px) rotate(2deg) scale(1.05);
+            }
+            50% {
+                transform: translateY(-3px) rotate(-1deg) scale(1.02);
+            }
+            75% {
+                transform: translateY(-8px) rotate(1deg) scale(1.03);
+            }
+        }
+        
+        .hover-lift {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(5deg);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(59, 130, 246, 0.1);
+            filter: brightness(1.05);
+        }
+        
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .shimmer-effect:hover::before {
+            left: 100%;
+        }
+        
+        .glow {
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { 
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 
+                           0 0 20px rgba(255, 255, 255, 0.2),
+                           inset 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            to { 
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 
+                           0 0 40px rgba(255, 255, 255, 0.4),
+                           inset 0 0 20px rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        .simple-shadow {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .scale-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        }
+        
+        .scale-hover:hover {
+            transform: scale(1.15) rotate(5deg) translateY(-10px);
+            filter: brightness(1.2) saturate(1.3) drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+        
+        .gradient-shift {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff, #5f27cd);
+            background-size: 800% 800%;
+            animation: gradientShift 4s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .simple-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .simple-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1), transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1), transparent 50%);
+            animation: bgFloat 15s ease-in-out infinite;
+        }
+        
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -20px) rotate(1deg); }
+            66% { transform: translate(-20px, 30px) rotate(-1deg); }
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .indicator:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+
+</head>
+<body class="bg-gray-50 overflow-hidden">
+    <div class="clinical-bg"></div>
+    <div class="particle-bg" id="particles"></div>
+    <div class="matrix-rain" id="matrix"></div>
+    <div class="w-full h-screen relative">
+<!-- Slide 1: Logo -->
+<div class="slide active bg-white items-center justify-center" id="slide-1">
+  <div class="fit-16x9">
+    <div class="fit-16x9-stage flex items-center justify-center">
+      <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" 
+           alt="Boiko Clinic Logo" 
+           class="object-contain drop-shadow-xl"
+           style="max-width: 60%; max-height: 60%;">
+    </div>
+  </div>
+</div>
+
+
+<!-- Slide 2: Склад препарату -->
+<div class="slide bg-gray-50" id="slide-2" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
+  <!-- Логотип -->
+  <div class="absolute bottom-4 right-4 z-10 hidden md:block">
+    <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo"
+         class="h-16 w-auto opacity-95 shadow-xl rounded-lg bg-white p-2.5 border border-gray-200">
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6 w-full h-full flex flex-col py-4">
+    <!-- Заголовок -->
+    <div class="text-center mb-4">
+      <h2 class="text-xl md:text-3xl font-bold text-gray-900" style="font-family:'Inter';letter-spacing:.5px;">
+        Склад препарату <span class="text-blue-700">Сорбітокс</span>
+      </h2>
+    </div>
+
+    <!-- Контент -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 flex-1 items-stretch">
+      <!-- Ліва колонка: компоненти + детально -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start">
+        <!-- Каолін -->
+        <div class="bg-white rounded-2xl shadow-lg border border-blue-50 p-4 min-h-[170px] flex flex-col">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center shadow">
+              <span class="text-2xl md:text-3xl">🧱</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h3 class="font-semibold text-gray-900 text-sm md:text-base leading-tight">Каолін</h3>
+                <span class="text-[11px] md:text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium">6,5 г</span>
+              </div>
+              <div class="text-[11px] text-blue-600 mt-0.5">Харчова біла глина • адсорбент</div>
+            </div>
+          </div>
+          <div class="mt-auto">
+            <div class="text-[11px] md:text-xs text-gray-600 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span class="font-medium text-gray-800">Ключове:</span> виражений детокс-ефект, швидке зв’язування токсинів та алергенів.
+            </div>
+          </div>
+        </div>
+
+        <!-- Шрот зародків пшениці -->
+        <div class="bg-white rounded-2xl shadow-lg border border-emerald-50 p-4 min-h-[170px] flex flex-col">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white flex items-center justify-center shadow">
+              <span class="text-2xl md:text-3xl">🌾</span>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h3 class="font-semibold text-gray-900 text-sm md:text-base leading-tight">Шрот зародків пшениці</h3>
+                <span class="text-[11px] md:text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">3,5 г</span>
+              </div>
+              <div class="text-[11px] text-emerald-600 mt-0.5">Клітковина • мінерали • мікроелементи</div>
+            </div>
+          </div>
+          <div class="mt-auto">
+            <div class="text-[11px] md:text-xs text-gray-600 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span class="font-medium text-gray-800">Ключове:</span> додатковий сорбційний ефект, краща евакуація, підтримка мікрофлори.
+            </div>
+          </div>
+        </div>
+
+        <!-- Детально про склад (повна ширина) -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:col-span-2">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-6 h-6 rounded-md bg-indigo-600 text-white text-xs flex items-center justify-center shadow">i</div>
+            <h4 class="font-semibold text-sm md:text-base text-gray-900">Детально про склад</h4>
+          </div>
+
+          <!-- Два callout-бокси всередині замість простого списку -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Каолін callout -->
+            <div class="rounded-xl border border-blue-100 bg-blue-50/40 p-3">
+              <div class="flex items-start gap-2">
+                <span class="mt-0.5 text-lg">🧱</span>
+                <p class="text-xs md:text-[13px] text-gray-800 leading-relaxed">
+                  <b>Каолін</b> — харчова біла глина, природний адсорбент. Має виражений та швидкий
+                  детоксикаційний ефект, виводить зі ШКТ продукти розпаду та метаболіти різного походження,
+                  отруйні речовини, алергени.
+                </p>
+              </div>
+            </div>
+            <!-- Шрот callout -->
+            <div class="rounded-xl border border-emerald-100 bg-emerald-50/40 p-3">
+              <div class="flex items-start gap-2">
+                <span class="mt-0.5 text-lg">🌾</span>
+                <p class="text-xs md:text-[13px] text-gray-800 leading-relaxed">
+                  <b>Шрот зародків пшениці</b> — джерело клітковини, мінералів та мікроелементів, створює
+                  додатковий сорбційний ефект у ШКТ, покращує евакуаторну функцію, зменшує подразнення
+                  слизової кишківника, стимулює розвиток нормальної мікрофлори.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Права колонка: упаковка -->
+      <div class="flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
+          <img src="assets/CV69qllMsILlf6eTx1EiH.png" alt="SorbiTox Product"
+               class="max-h-[420px] md:max-h-[460px] object-contain drop-shadow-2xl mx-auto">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Slide 3: Ефекти Сорбітокс -->
+<div class="slide bg-gray-50 mobile-scroll" id="slide-3">
+  <!-- Логотип компанії -->
+  <div class="absolute bottom-4 right-4 z-10 hidden md:block">
+    <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo" class="h-14 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 w-full flex flex-col py-4 md:py-2">
+    <h2 class="text-xl md:text-3xl font-bold text-center mb-4 text-gray-900" style="font-family:'Inter';letter-spacing:.5px;word-spacing:3px;">
+      Ефекти Сорбітокс
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1">
+      <!-- Ліва колонка — 1-3 ефекти -->
+      <div class="grid grid-cols-1 gap-4">
+        <div class="clinical-card bg-white p-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-16 h-16 bg-amber-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+              <span class="text-3xl">🧲</span>
+            </div>
+            <div class="flex-1 flex flex-col justify-center">
+              <h3 class="font-semibold text-gray-900 mb-2 text-base">Адсорбує токсини та алергени</h3>
+              <p class="text-gray-600 text-sm">Зв’язує бактеріальні токсини, харчові алергени та метаболіти</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinical-card bg-white p-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-16 h-16 bg-emerald-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+              <span class="text-3xl">🛡️</span>
+            </div>
+            <div class="flex-1 flex flex-col justify-center">
+              <h3 class="font-semibold text-gray-900 mb-2 text-base">Зменшує запалення слизової</h3>
+              <p class="text-gray-600 text-sm">Сприяє відновленню бар’єрної функції кишківника</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinical-card bg-white p-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-16 h-16 bg-sky-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+              <span class="text-3xl">🌊</span>
+            </div>
+            <div class="flex-1 flex flex-col justify-center">
+              <h3 class="font-semibold text-gray-900 mb-2 text-base">Нормалізує стілець та зменшує діарею</h3>
+              <p class="text-gray-600 text-sm">Швидке полегшення при інфекційних і харчових розладах</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Центральна колонка — цілі впливу з анімаціями -->
+      <div class="flex flex-col justify-center">
+        <div class="clinical-card bg-white p-4">
+          <h3 class="font-semibold text-base text-gray-900 mb-3 text-center">Цілі впливу Сорбітокс</h3>
+          <div class="relative flex items-center justify-center">
+            <svg class="w-full max-w-sm h-48" viewBox="0 0 500 280">
+              <!-- defs -->
+              <defs>
+                <radialGradient id="bodyGlowSorbi" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" style="stop-color:#10b981;stop-opacity:.1"/>
+                  <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0"/>
+                </radialGradient>
+                <filter id="targetGlowSorbi">
+                  <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- аура -->
+              <circle cx="250" cy="140" r="120" fill="url(#bodyGlowSorbi)" opacity=".6">
+                <animate attributeName="r" values="120;140;120" dur="4s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- силует людини -->
+              <g transform="translate(250,140) scale(1.4)">
+                <circle cx="0" cy="-65" r="15" fill="none" stroke="#1f2937" stroke-width="3">
+                  <animate attributeName="stroke-width" values="3;4;3" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="-4" cy="-67" r="1.5" fill="#1f2937"/>
+                <circle cx="4" cy="-67" r="1.5" fill="#1f2937"/>
+                <path d="M-3,-58 Q0,-55 3,-58" stroke="#1f2937" stroke-width="1.5" fill="none"/>
+                <line x1="0" y1="-50" x2="0" y2="-40" stroke="#1f2937" stroke-width="3"/>
+                <line x1="0" y1="-40" x2="0" y2="20" stroke="#1f2937" stroke-width="4"/>
+                <line x1="0" y1="-25" x2="-25" y2="-5" stroke="#1f2937" stroke-width="3"/>
+                <line x1="0" y1="-25" x2="25" y2="-5" stroke="#1f2937" stroke-width="3"/>
+                <line x1="-25" y1="-5" x2="-30" y2="15" stroke="#1f2937" stroke-width="3"/>
+                <line x1="25" y1="-5" x2="30" y2="15" stroke="#1f2937" stroke-width="3"/>
+                <circle cx="-30" cy="15" r="2.5" fill="#1f2937"/>
+                <circle cx="30" cy="15" r="2.5" fill="#1f2937"/>
+                <line x1="0" y1="20" x2="-18" y2="60" stroke="#1f2937" stroke-width="3"/>
+                <line x1="0" y1="20" x2="18" y2="60" stroke="#1f2937" stroke-width="3"/>
+                <line x1="-18" y1="60" x2="-15" y2="100" stroke="#1f2937" stroke-width="3"/>
+                <line x1="18" y1="60" x2="15" y2="100" stroke="#1f2937" stroke-width="3"/>
+                <line x1="-15" y1="100" x2="-22" y2="103" stroke="#1f2937" stroke-width="3"/>
+                <line x1="15" y1="100" x2="22" y2="103" stroke="#1f2937" stroke-width="3"/>
+                <rect x="-8" y="-25" width="16" height="25" fill="none" stroke="#374151" stroke-width="2" rx="3"/>
+                <circle cx="0" cy="-15" r="1" fill="#374151"/>
+                <circle cx="0" cy="-8" r="1" fill="#374151"/>
+                <circle cx="0" cy="-1" r="1" fill="#374151"/>
+              </g>
+
+              <!-- Мішені: Кишечник, Печінка, Мікробіом -->
+              <!-- 1. КИШЕЧНИК -->
+              <circle cx="250" cy="180" r="9" fill="#10b981" opacity="1" filter="url(#targetGlowSorbi)">
+                <animate attributeName="r" values="9;13;9" dur="2.1s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.9;1;0.9" dur="2.1s" repeatCount="indefinite"/>
+              </circle>
+              <text x="295" y="185" class="text-sm font-bold fill-emerald-600">КИШЕЧНИК</text>
+              <text x="300" y="198" class="text-xs fill-emerald-500">Детокс та бар’єр</text>
+
+              <!-- 2. ПЕЧІНКА -->
+              <circle cx="250" cy="150" r="8" fill="#f59e0b" opacity="1" filter="url(#targetGlowSorbi)">
+                <animate attributeName="r" values="8;12;8" dur="1.8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.9;1;0.9" dur="1.8s" repeatCount="indefinite"/>
+              </circle>
+              <text x="292" y="147" class="text-sm font-bold fill-amber-600">ПЕЧІНКА</text>
+              <text x="292" y="160" class="text-xs fill-amber-500">Зменшення токсичного навантаження</text>
+
+              <!-- 3. МІКРОБІОМ -->
+              <circle cx="205" cy="175" r="6" fill="#3b82f6" opacity="1" filter="url(#targetGlowSorbi)">
+                <animate attributeName="r" values="6;9;6" dur="1.6s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.8;1;0.8" dur="1.6s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="295" cy="175" r="6" fill="#3b82f6" opacity="1" filter="url(#targetGlowSorbi)">
+                <animate attributeName="r" values="6;9;6" dur="1.7s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.8;1;0.8" dur="1.7s" repeatCount="indefinite"/>
+              </circle>
+              <text x="132" y="170" class="text-sm font-bold fill-blue-600">МІКРОБІОМ</text>
+              <text x="127" y="183" class="text-xs fill-blue-500">Сорбція токсинів мікробів</text>
+
+              <!-- Хвилі -->
+              <!-- Кишечні хвилі — зелені -->
+              <circle cx="250" cy="180" r="25" fill="none" stroke="#10b981" stroke-width="3" opacity=".7">
+                <animate attributeName="r" values="25;40;25" dur="2.8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.7;0;0.7" dur="2.8s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Печінкові хвилі — бурштинові -->
+              <circle cx="250" cy="150" r="22" fill="none" stroke="#f59e0b" stroke-width="3" opacity=".6">
+                <animate attributeName="r" values="22;34;22" dur="2.4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.6;0;0.6" dur="2.4s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Мікробіом — сині -->
+              <circle cx="205" cy="175" r="18" fill="none" stroke="#3b82f6" stroke-width="3" opacity=".6">
+                <animate attributeName="r" values="18;28;18" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="295" cy="175" r="18" fill="none" stroke="#3b82f6" stroke-width="3" opacity=".6">
+                <animate attributeName="r" values="18;28;18" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.6;0;0.6" dur="2.2s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Загальна системна хвиля -->
+              <circle cx="250" cy="160" r="90" fill="none" stroke="#6b7280" stroke-width="2" opacity=".3">
+                <animate attributeName="r" values="90;130;90" dur="6s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0;0.3" dur="6s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Зв'язки -->
+              <path d="M250,150 Q250,165 250,180" stroke="#f59e0b" stroke-width="3" fill="none" opacity=".6">
+                <animate attributeName="stroke-dasharray" values="0 100;60 40;0 100" dur="2.1s" repeatCount="indefinite"/>
+              </path>
+              <path d="M205,175 Q228,170 250,160" stroke="#3b82f6" stroke-width="2.5" fill="none" opacity=".5">
+                <animate attributeName="stroke-dasharray" values="0 100;50 50;0 100" dur="2s" repeatCount="indefinite"/>
+              </path>
+              <path d="M295,175 Q272,170 250,160" stroke="#3b82f6" stroke-width="2.5" fill="none" opacity=".5">
+                <animate attributeName="stroke-dasharray" values="0 100;50 50;0 100" dur="2.1s" repeatCount="indefinite"/>
+              </path>
+            </svg>
+          </div>
+
+          <!-- Легенда -->
+          <div class="grid grid-cols-3 gap-2 text-xs text-gray-700 mt-4">
+            <div class="text-center">
+              <div class="w-4 h-4 bg-emerald-600 rounded-full mx-auto mb-1"></div>
+              <span class="font-bold text-gray-900 text-xs">Кишечник</span>
+              <div class="text-gray-600 text-xs mt-1">Бар’єр, сорбція токсинів</div>
+              <div class="text-emerald-600 text-xs font-semibold mt-1">Детокс</div>
+            </div>
+            <div class="text-center">
+              <div class="w-4 h-4 bg-amber-500 rounded-full mx-auto mb-1"></div>
+              <span class="font-bold text-gray-900 text-xs">Печінка</span>
+              <div class="text-gray-600 text-xs mt-1">Менше токсичного навантаження</div>
+              <div class="text-amber-600 text-xs font-semibold mt-1">Гепатопротекція</div>
+            </div>
+            <div class="text-center">
+              <div class="w-4 h-4 bg-blue-600 rounded-full mx-auto mb-1"></div>
+              <span class="font-bold text-gray-900 text-xs">Мікробіом</span>
+              <div class="text-gray-600 text-xs mt-1">Менше токсинів мікробів</div>
+              <div class="text-blue-600 text-xs font-semibold mt-1">Баланс</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Права колонка — 4-6 ефекти -->
+      <div class="grid grid-cols-1 gap-4">
+        <div class="clinical-card bg-white p-5 h-full">
+          <div class="flex items-center space-x-4 h-full">
+            <div class="w-16 h-16 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+              <span class="text-3xl">🤢</span>
+            </div>
+            <div class="flex-1 flex flex-col justify-center">
+              <h3 class="font-semibold text-gray-900 mb-2 text-base">Зменшує нудоту та блювання</h3>
+              <p class="text-gray-600 text-sm">Швидке полегшення симптомів інтоксикації</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinical-card bg-white p-5 h-full">
+          <div class="flex items-center space-x-4 h-full">
+            <div class="w-16 h-16 bg-rose-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+              <span class="text-3xl">🍷</span>
+            </div>
+            <div class="flex-1 flex flex-col justify-center">
+              <h3 class="font-semibold text-gray-900 mb-2 text-base">Допомога при алкогольному та харчовому отруєнні</h3>
+              <p class="text-gray-600 text-sm">Сорбція шкідливих речовин і метаболітів</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="clinical-card bg-white p-5 h-full">
+          <div class="flex items-center space-x-4 h-full">
+            <div class="w-16 h-16 bg-teal-600 rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0">
+              <span class="text-3xl">🌿</span>
+            </div>
+            <div class="flex-1 flex flex-col justify-center">
+              <h3 class="font-semibold text-gray-900 mb-2 text-base">У складі протипаразитарної терапії</h3>
+              <p class="text-gray-600 text-sm">Зменшує токсичність та алергізацію під час елімінації</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Низ — офіційне попередження -->
+    <div class="mt-4">
+      <div class="clinical-card bg-amber-50 border border-amber-200 p-4">
+        <div class="flex items-center justify-center space-x-3">
+          <div class="w-8 h-8 bg-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92z"/>
+              <path d="M11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+            </svg>
+          </div>
+          <div class="text-center">
+            <h3 class="font-semibold text-gray-900 text-sm mb-1">Важливо!</h3>
+            <p class="text-gray-700 text-sm">Сорбітокс — дієтична добавка, не є лікарським засобом. Перед застосуванням рекомендується консультація з лікарем.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Slide 4: Показання до застосування (Сорбітокс) -->
+<div id="slide-4" class="slide bg-gray-50 mobile-scroll px-4 md:px-6 py-4 relative h-full">
+
+  <!-- Заголовок -->
+  <h2 class="text-lg md:text-2xl font-bold text-center text-gray-900 mb-3"
+      style="font-family: 'Inter'; letter-spacing: 0.5px;">
+    Показання до застосування
+  </h2>
+
+  <!-- Основна сітка 16:9 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-7xl mx-auto h-[80%]">
+
+    <!-- Ліва колонка: блоки в 2 колонки -->
+    <div class="grid grid-cols-2 gap-3 content-start">
+
+      <!-- Карточка -->
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🍽️</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Харчове отруєння</h4>
+          <p class="text-[11px] text-gray-600">Полегшення симптомів</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🦠</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Кишкові інфекції</h4>
+          <p class="text-[11px] text-gray-600">Допоміжна терапія</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🍷</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Алкогольне отруєння</h4>
+          <p class="text-[11px] text-gray-600">Зменшення токсинів</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-fuchsia-500 to-fuchsia-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🥛</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Харчова алергія</h4>
+          <p class="text-[11px] text-gray-600">Сорбція алергенів</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🧬</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Вірусні інфекції</h4>
+          <p class="text-[11px] text-gray-600">Зменшення інтоксикації</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">💧</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Діарея</h4>
+          <p class="text-[11px] text-gray-600">Нормалізація стільця</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🤢</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Нудота</h4>
+          <p class="text-[11px] text-gray-600">Полегшення симптомів</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-rose-600 to-red-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🚫</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Блювання</h4>
+          <p class="text-[11px] text-gray-600">Симптоматичне полегшення</p>
+        </div>
+      </div>
+
+      <div class="clinical-card bg-white p-3 shadow border rounded-lg flex items-center col-span-2">
+        <div class="w-9 h-9 md:w-10 md:h-10 bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center text-white text-lg md:text-xl rounded-md shadow mr-2">🪱</div>
+        <div>
+          <h4 class="font-semibold text-xs text-gray-900">Антигельмінтна терапія</h4>
+          <p class="text-[11px] text-gray-600">Зменшення токсичності</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Права колонка: коробка -->
+    <div class="flex items-center justify-center">
+      <img src="assets/wuKM9Y6TQskEe1Rj7YTWN.png" alt="SorbiTox Product" class="max-h-[360px] object-contain drop-shadow-xl">
+    </div>
+  </div>
+
+  <!-- Логотип -->
+  <div class="absolute bottom-3 right-3 z-10 hidden md:block">
+    <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo" class="h-9 w-auto opacity-90 shadow rounded bg-white p-1">
+  </div>
+</div>
+
+
+<!-- Slide 5: Спосіб застосування (Сорбітокс) -->
+<div class="slide bg-gray-50 flex items-center justify-center" id="slide-5">
+  <!-- Логотип -->
+  <div class="absolute bottom-4 right-4 z-10">
+    <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo" class="h-12 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 w-full h-full flex flex-col py-3">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-5 text-gray-900" style="font-family:'Inter';letter-spacing:.5px;">
+      Спосіб застосування
+    </h2>
+
+    <!-- 3 рівні колонки: усі однакової структури -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 flex-1 items-stretch">
+
+      <!-- 1) Дозування за віком -->
+      <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
+        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Дозування за віком</h3>
+
+        <!-- Контент вирівняний, компактний -->
+        <div class="space-y-3 flex-1">
+          <!-- 3+ -->
+          <div class="flex items-center gap-3 p-3 rounded-lg border shadow-sm">
+            <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center text-lg">👶</div>
+            <div class="flex-1">
+              <div class="text-sm font-semibold text-gray-900">Діти з 3-х років</div>
+              <div class="text-xs text-gray-600">½ пакетика одноразово*</div>
+            </div>
+          </div>
+          <!-- 6+ -->
+          <div class="flex items-center gap-3 p-3 rounded-lg border shadow-sm">
+            <div class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-lg">🧒</div>
+            <div class="flex-1">
+              <div class="text-sm font-semibold text-gray-900">Діти з 6-ти років</div>
+              <div class="text-xs text-gray-600">1 пакетик одноразово*</div>
+            </div>
+          </div>
+          <!-- 12+ -->
+          <div class="flex items-center gap-3 p-3 rounded-lg border shadow-sm">
+            <div class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-lg">👨‍👩‍👧</div>
+            <div class="flex-1">
+              <div class="text-sm font-semibold text-gray-900">12+ років та дорослі</div>
+              <div class="text-xs text-gray-600">2–3 пакетики одноразово*</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Примітка (корисна, коротка) -->
+        <div class="mt-3 bg-blue-50 text-blue-700 text-xs p-2 rounded text-center border border-blue-200">
+          💡 Пакетик використовують <b>одноразово</b>
+        </div>
+      </section>
+
+      <!-- 2) Як приймати (повноширокі кроки у стовпчик) -->
+      <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
+        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Як приймати</h3>
+
+        <div class="space-y-3 flex-1">
+          <!-- Крок 1 -->
+          <div class="flex items-center gap-4 p-4 rounded-lg border shadow-sm">
+            <div class="w-12 h-12 bg-sky-600 text-white rounded-lg flex items-center justify-center text-xl flex-shrink-0">💧</div>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-gray-900">Розчинити</span>
+              <span class="text-xs text-gray-600">В 100 мл води кімнатної температури</span>
+            </div>
+          </div>
+          <!-- Крок 2 -->
+          <div class="flex items-center gap-4 p-4 rounded-lg border shadow-sm">
+            <div class="w-12 h-12 bg-amber-600 text-white rounded-lg flex items-center justify-center text-xl flex-shrink-0">🥤</div>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-gray-900">Прийняти</span>
+              <span class="text-xs text-gray-600">Одразу після приготування</span>
+            </div>
+          </div>
+          <!-- Крок 3 -->
+          <div class="flex items-center gap-4 p-4 rounded-lg border shadow-sm">
+            <div class="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-xl flex-shrink-0">🩺</div>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-gray-900">Курс лікування</span>
+              <span class="text-xs text-gray-600">Тривалість визначає лікар</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Примітка (про порошок) -->
+        <div class="mt-3 bg-emerald-50 text-emerald-700 text-xs p-2 rounded text-center border border-emerald-200">
+          💡 Не змішувати з соками чи газованими напоями
+        </div>
+      </section>
+
+      <!-- 3) Упаковка + Застереження (велика упаковка) -->
+      <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
+        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Упаковка та застереження</h3>
+
+        <!-- Упаковка збільшена та по центру -->
+        <div class="flex justify-center items-center flex-1 mb-4">
+          <!-- Постав свій id/посилання на зображення упаковки SorbiTox -->
+          <img src="assets/CV69qllMsILlf6eTx1EiH.png" alt="SorbiTox Product" class="max-h-[360px] object-contain drop-shadow-2xl">
+        </div>
+
+        <!-- Застереження компактно -->
+        <ul class="text-xs text-gray-800 space-y-2">
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 bg-amber-600 text-white rounded flex items-center justify-center text-[11px]">!</span>
+            Індивідуальна чутливість до компонентів
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 bg-amber-600 text-white rounded flex items-center justify-center text-[11px]">!</span>
+            Діти до 3-х років
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 bg-amber-600 text-white rounded flex items-center justify-center text-[11px]">!</span>
+            Вагітність та період лактації
+          </li>
+        </ul>
+
+        <!-- Примітка -->
+        <div class="mt-3 bg-amber-50 text-amber-700 text-xs p-2 rounded text-center border border-amber-200">
+          💡 Перед застосуванням порадьтеся з лікарем
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Slide 6: Застереження (Сорбітокс) -->
+<div class="slide bg-gray-50 items-center justify-center" id="slide-6">
+  <!-- Логотип -->
+  <div class="absolute bottom-4 right-4 z-10">
+    <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo" 
+         class="h-12 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 w-full">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-900" 
+        style="font-family:'Inter';letter-spacing:.5px;">
+      Застереження до застосування
+    </h2>
+
+    <div class="space-y-4">
+      <!-- 1 -->
+      <div class="clinical-card bg-white p-4 flex items-center gap-3 shadow border rounded-xl">
+        <div class="w-12 h-12 bg-red-600 text-white rounded-lg flex items-center justify-center text-2xl flex-shrink-0">⚠️</div>
+        <div>
+          <h3 class="font-semibold text-sm text-gray-900">Індивідуальна чутливість</h3>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="clinical-card bg-white p-4 flex items-center gap-3 shadow border rounded-xl">
+        <div class="w-12 h-12 bg-red-600 text-white rounded-lg flex items-center justify-center text-2xl flex-shrink-0">👶</div>
+        <div>
+          <h3 class="font-semibold text-sm text-gray-900">Діти до 3-х років</h3>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="clinical-card bg-white p-4 flex items-center gap-3 shadow border rounded-xl">
+        <div class="w-12 h-12 bg-red-600 text-white rounded-lg flex items-center justify-center text-2xl flex-shrink-0">🤰</div>
+        <div>
+          <h3 class="font-semibold text-sm text-gray-900">Вагітність та лактація</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Slide 7: Переваги для пацієнта (Сорбітокс) -->
+<div class="slide bg-gray-50 flex items-center justify-center px-6 md:px-8 py-6" id="slide-7"
+     style="aspect-ratio:16/9; position:relative; overflow:hidden;">
+  <!-- Логотип -->
+  <div class="absolute bottom-4 right-4 z-10">
+    <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo"
+         class="h-12 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
+  </div>
+
+  <div class="max-w-7xl w-full mx-auto flex flex-col">
+    <!-- Заголовок -->
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6"
+        style="font-family:'Inter';letter-spacing:.5px;">Переваги для пацієнта</h2>
+
+    <!-- Сітка: зліва 2×3 картки, справа 3 статистики -->
+    <div class="grid grid-cols-4 gap-5 w-full">
+
+      <!-- Ліва частина: 6 перк-карток без прогрес-барів -->
+      <div class="col-span-3 grid grid-cols-3 gap-4">
+        <!-- 1 -->
+        <div class="perk-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-emerald-600 rounded-xl mb-2 flex items-center justify-center text-white text-2xl shadow">⚡</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Швидкий ефект</h3>
+          <p class="text-xs text-gray-600">Діє з перших хвилин</p>
+        </div>
+        <!-- 2 -->
+        <div class="perk-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-blue-600 rounded-xl mb-2 flex items-center justify-center text-white text-2xl shadow">💊</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Однократне застосування</h3>
+          <p class="text-xs text-gray-600">Достатньо один раз</p>
+        </div>
+        <!-- 3 -->
+        <div class="perk-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-purple-600 rounded-xl mb-2 flex items-center justify-center text-white text-2xl shadow">⏱️</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Своєчасна допомога</h3>
+          <p class="text-xs text-gray-600">Швидко усуває симптоми</p>
+        </div>
+        <!-- 4 -->
+        <div class="perk-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-amber-600 rounded-xl mb-2 flex items-center justify-center text-white text-2xl shadow">🎯</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight text-center">Результат незалежно від причини</h3>
+          <p class="text-xs text-gray-600">Комплексна сорбція</p>
+        </div>
+        <!-- 5 -->
+        <div class="perk-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-indigo-600 rounded-xl mb-2 flex items-center justify-center text-white text-2xl shadow">📦</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Зручна упаковка</h3>
+          <p class="text-xs text-gray-600">Саше — завжди з собою</p>
+        </div>
+        <!-- 6 -->
+        <div class="perk-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-pink-600 rounded-xl mb-2 flex items-center justify-center text-white text-2xl shadow">🌍</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Під рукою будь-де</h3>
+          <p class="text-xs text-gray-600">Подорож, відпочинок, вночі • <span class="font-semibold">з 3-х років</span></p>
+        </div>
+      </div>
+
+      <!-- Права частина: статистика (з анімацією барів) -->
+      <div class="flex flex-col gap-4 justify-between">
+        <!-- Задоволеність -->
+        <div class="bg-white p-4 rounded-2xl shadow-md">
+          <h3 class="text-sm font-semibold text-gray-900 mb-2 text-center">Задоволеність</h3>
+          <div class="text-3xl font-bold text-emerald-600 text-center mb-1">97.4%</div>
+          <p class="text-[11px] text-gray-600 text-center mb-3">Результати опитування</p>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between"><span>Відмінно</span><span class="font-bold text-emerald-600">73%</span></div>
+            <div class="progressbar !h-1.5"><i class="text-emerald-600" style="--w:73%"></i></div>
+            <div class="flex justify-between"><span>Добре</span><span class="font-bold text-blue-600">23%</span></div>
+            <div class="progressbar !h-1.5"><i class="text-blue-600" style="--w:23%"></i></div>
+            <div class="flex justify-between"><span>Задовільно</span><span class="font-bold text-amber-600">4%</span></div>
+            <div class="progressbar !h-1.5"><i class="text-amber-600" style="--w:4%"></i></div>
+          </div>
+        </div>
+
+        <!-- Топ переваг -->
+        <div class="bg-white p-4 rounded-2xl shadow-md text-sm">
+          <h3 class="text-sm font-semibold text-gray-900 mb-3 text-center">Топ переваг</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 bg-emerald-600 text-white text-[11px] font-bold rounded-full flex items-center justify-center">1</div>
+              <div class="flex-1">
+                <p class="text-xs">Швидкий ефект</p>
+                <div class="progressbar"><i class="text-emerald-600" style="--w:96%"></i></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 bg-indigo-600 text-white text-[11px] font-bold rounded-full flex items-center justify-center">2</div>
+              <div class="flex-1">
+                <p class="text-xs">Зручна упаковка</p>
+                <div class="progressbar"><i class="text-indigo-600" style="--w:93%"></i></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 bg-blue-600 text-white text-[11px] font-bold rounded-full flex items-center justify-center">3</div>
+              <div class="flex-1">
+                <p class="text-xs">Однократне застосування</p>
+                <div class="progressbar"><i class="text-blue-600" style="--w:90%"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Зручність у житті -->
+        <div class="bg-white p-4 rounded-2xl shadow-md text-center">
+          <h3 class="text-sm font-semibold text-gray-900 mb-2">Зручність у житті</h3>
+          <div class="text-2xl font-bold text-emerald-700 mb-1">+85%</div>
+          <p class="text-xs text-gray-600 mb-3">Пацієнти відмічають покращення</p>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div><span class="font-bold text-emerald-600">+32%</span><br>У подорожі</div>
+            <div><span class="font-bold text-purple-600">+27%</span><br>При отруєннях</div>
+            <div><span class="font-bold text-blue-600">+18%</span><br>У дітей 3+</div>
+            <div><span class="font-bold text-amber-600">+28%</span><br>При алергіях</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Стилі: рівні висоти й анімація правих барів -->
+<style>
+  .perk-card{min-height:168px} /* уніфікована висота карток зліва */
+  .progressbar{width:100%;height:4px;background:#e5e7eb;border-radius:9999px;overflow:hidden}
+  .progressbar>i{display:block;height:100%;width:0;background:currentColor;border-radius:9999px;animation:grow 1.6s ease-out forwards}
+  @keyframes grow{from{width:0}to{width:var(--w,100%)}}
+</style>
+
+
+<!-- Slide 8: Переваги для лікаря (Сорбітокс) -->
+<div class="slide bg-gray-50 flex items-center justify-center px-6 md:px-8 py-6" id="slide-8"
+     style="aspect-ratio:16/9; position:relative; overflow:hidden;">
+  <!-- Логотип -->
+  <div class="absolute bottom-4 right-4 z-10">
+    <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo"
+         class="h-12 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
+  </div>
+
+  <div class="max-w-7xl w-full mx-auto flex flex-col">
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6"
+        style="font-family:'Inter';letter-spacing:.5px;">Переваги для лікаря</h2>
+
+    <!-- Основна сітка: зліва 8 карток (2×4), справа 2 блоки -->
+    <div class="grid grid-cols-3 gap-5 w-full">
+
+      <!-- Ліва частина: 8 рівних карток -->
+      <div class="col-span-2 grid grid-cols-2 gap-4">
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-blue-600 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">🌐</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Широкий спектр застосування</h3>
+          <p class="text-xs text-gray-600">ГКІ, отруєння, алергії тощо</p>
+        </div>
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">🔁</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Повторний прийом за потреби</h3>
+          <p class="text-xs text-gray-600">Гнучкий режим</p>
+        </div>
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-indigo-600 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">🧪</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Введення через зонд</h3>
+          <p class="text-xs text-gray-600">Розчин для ентерального доступу</p>
+        </div>
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-purple-600 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">🛡️</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Безпечність</h3>
+          <p class="text-xs text-gray-600">Локальна дія сорбенту</p>
+        </div>
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-cyan-600 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">⏱️</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Менше інфузій</h3>
+          <p class="text-xs text-gray-600">Своєчасний прийом знижує потребу</p>
+        </div>
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-amber-600 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">🏥</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Коротший стаціонар</h3>
+          <p class="text-xs text-gray-600">Менше симптомів і днів у лікарні</p>
+        </div>
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-pink-600 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">🧯</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Профілактика ускладнень</h3>
+          <p class="text-xs text-gray-600">Зниження токсичного навантаження</p>
+        </div>
+        <div class="perk-doc-card bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center text-center">
+          <div class="w-12 h-12 bg-slate-700 text-white rounded-xl mb-2 flex items-center justify-center text-2xl shadow">✨</div>
+          <h3 class="font-semibold text-sm text-gray-900 leading-tight">Відсутність аналогів</h3>
+          <p class="text-xs text-gray-600">Унікальна комбінація</p>
+        </div>
+      </div>
+
+      <!-- Права частина -->
+      <div class="flex flex-col gap-4">
+        <!-- Робочий процес лікаря: вертикальний stepper з анімацією -->
+        <div class="bg-white p-4 rounded-2xl shadow-md flex-1">
+          <h3 class="text-sm font-semibold text-gray-900 mb-3 text-center">Робочий процес лікаря</h3>
+
+          <div class="relative pl-8">
+            <!-- Базова «вісь» -->
+            <div class="absolute left-3 top-1 bottom-1 w-0.5 bg-gray-200 rounded-full overflow-hidden">
+              <!-- Кольорова заливка осі (анімація росту) -->
+              <div class="h-0 w-full bg-gradient-to-b from-blue-500 via-emerald-500 to-purple-500 animate-axis-fill rounded-full"></div>
+            </div>
+
+            <!-- Крок 1 -->
+            <div class="step flex items-start gap-3 mb-3">
+              <div class="step-badge bg-blue-600 text-white">1</div>
+              <div class="flex-1">
+                <div class="text-xs font-semibold text-gray-900">Тріаж і діагностика</div>
+                <div class="text-[11px] text-gray-600">Оцінка дегідратації, показів до ентеральної сорбції</div>
+                <div class="mt-1 flex flex-wrap gap-1">
+                  <span class="chip">🩺 оцінка стану</span>
+                  <span class="chip">💧 регідратація</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Крок 2 -->
+            <div class="step flex items-start gap-3 mb-3">
+              <div class="step-badge bg-emerald-600 text-white">2</div>
+              <div class="flex-1">
+                <div class="text-xs font-semibold text-gray-900">Приготування розчину / зонд</div>
+                <div class="text-[11px] text-gray-600">Розчинити порошок у 100&nbsp;мл води кімнатної t° або ввести через зонд</div>
+                <div class="mt-1 flex flex-wrap gap-1">
+                  <span class="chip">🥤 100 мл</span>
+                  <span class="chip">🧪 ентерально</span>
+                  <span class="chip">🚫 без соків/газ.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Крок 3 -->
+            <div class="step flex items-start gap-3 mb-3">
+              <div class="step-badge bg-amber-600 text-white">3</div>
+              <div class="flex-1">
+                <div class="text-xs font-semibold text-gray-900">Рознесення з іншими ЛЗ</div>
+                <div class="text-[11px] text-gray-600">Прийом Сорбітокс за 1–2 год <b>до/після</b> інших препаратів</div>
+                <div class="mt-1 flex flex-wrap gap-1">
+                  <span class="chip">⏱️ 1–2 год</span>
+                  <span class="chip">🎯 уникати взаємодій</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Крок 4 -->
+            <div class="step flex items-start gap-3">
+              <div class="step-badge bg-purple-600 text-white">4</div>
+              <div class="flex-1">
+                <div class="text-xs font-semibold text-gray-900">Моніторинг і повтор</div>
+                <div class="text-[11px] text-gray-600">Оцінка динаміки симптомів, повторний прийом за потреби</div>
+                <div class="mt-1 flex flex-wrap gap-1">
+                  <span class="chip">📈 контроль симптомів</span>
+                  <span class="chip">🔁 повтор ймовірний</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Підсумкова ефективність -->
+        <div class="bg-white p-4 rounded-2xl shadow-md">
+          <h3 class="font-semibold text-sm text-gray-900 mb-2 text-center">Підсумкова ефективність</h3>
+          <div class="text-center mb-2">
+            <div class="text-xl font-bold text-blue-600">96.5%</div>
+            <div class="text-xs text-gray-600">задоволених лікарів</div>
+          </div>
+          <div class="progressbar !h-1.5"><i class="text-blue-600" style="--w:96.5%"></i></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Стилі (рівні картки, stepper, анімації) -->
+<style>
+  .perk-doc-card{min-height:140px}
+
+  /* Stepper */
+  .step-badge{
+    width:1.5rem;height:1.5rem;min-width:1.5rem;
+    border-radius:.5rem;display:flex;align-items:center;justify-content:center;
+    font-size:.75rem;font-weight:700;box-shadow:0 4px 10px rgba(0,0,0,.08);
+    animation:pop .5s ease-out both;
+  }
+  .step{opacity:0;animation:slideIn .45s ease-out both}
+  .step:nth-child(1){animation-delay:.05s}
+  .step:nth-child(2){animation-delay:.15s}
+  .step:nth-child(3){animation-delay:.25s}
+  .step:nth-child(4){animation-delay:.35s}
+
+  .chip{
+    font-size:10px; line-height:1; padding:.3rem .45rem; border-radius:.5rem;
+    background:#f1f5f9; color:#334155; border:1px solid #e2e8f0;
+  }
+
+  /* Бар ефективності зліва внизу */
+  .progressbar{width:100%;height:4px;background:#e5e7eb;border-radius:9999px;overflow:hidden}
+  .progressbar>i{display:block;height:100%;width:0;background:currentColor;border-radius:9999px;animation:grow 1.4s ease-out forwards}
+  @keyframes grow{from{width:0}to{width:var(--w,100%)}}
+
+  /* Анімації stepper */
+  @keyframes pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.05);opacity:1}100%{transform:scale(1)}}
+  @keyframes slideIn{0%{transform:translateY(6px);opacity:0}100%{transform:translateY(0);opacity:1}}
+
+  /* Заповнення вертикальної осі */
+  .animate-axis-fill{animation:axisFill 1.3s ease-out forwards}
+  @keyframes axisFill{from{height:0}to{height:100%}}
+</style>
+
+
+
+
+<!-- Slide 9: Клінічна ефективність (Сорбітокс) — вирівняно, без накладань -->
+<div id="slide-9" class="slide relative bg-gray-50 h-screen overflow-hidden">
+  <!-- Центрований фрейм 1280×720, масштабується під екран -->
+  <div class="absolute inset-0 grid place-items-center">
+    <div class="s9-stage relative" style="width:1280px;height:720px;transform:scale(var(--s9,1));transform-origin:center;">
+
+      <!-- Лого -->
+      <div class="absolute bottom-4 right-4 z-10 pointer-events-none">
+        <img src="assets/FJGTxmY7nYxO2gRhDrP1X.png" alt="Boiko Clinic Logo" class="h-14 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
+      </div>
+
+      <!-- Контент -->
+      <div class="w-full h-full flex flex-col px-6 py-3">
+        <h2 class="text-2xl font-bold text-center mb-2 text-gray-900" style="font-family:'Inter';letter-spacing:.5px;">
+          Клінічна ефективність Сорбітокс
+        </h2>
+
+        <!-- Сітка сцени: 2 ряди × 3 колонки (320/320/auto), рядки по 300px -->
+        <div class="grid" style="grid-template-columns:320px 320px 1fr; grid-template-rows:300px 300px; gap:16px; flex:1;">
+
+          <!-- Row 1 / Col 1: Ефективність -->
+          <div class="s9-card">
+            <div class="s9-icon bg-blue-600"><span class="text-2xl text-white">📊</span></div>
+            <h3 class="s9-title">Ефективність</h3>
+            <div class="s9-metrics">
+              <div class="s9-metric">
+                <div class="s9-value text-blue-600">96%</div>
+                <div class="s9-label">Детоксикація</div>
+              </div>
+              <div class="s9-metric">
+                <div class="s9-value text-emerald-600">92%</div>
+                <div class="s9-label">Полегшення</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 1 / Col 2: Статистика -->
+          <div class="s9-card">
+            <div class="s9-icon bg-emerald-600"><span class="text-2xl text-white">👥</span></div>
+            <h3 class="s9-title">Статистика</h3>
+            <div class="s9-metrics">
+              <div class="s9-metric">
+                <div class="s9-value text-blue-600">15&nbsp;340</div>
+                <div class="s9-label">Пацієнтів</div>
+              </div>
+              <div class="s9-metric">
+                <div class="s9-value text-emerald-600">97,8%</div>
+                <div class="s9-label">% задов.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 1 / Col 3: Інфографіка -->
+          <div class="s9-card s9-card--inf">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-600 to-blue-600 mx-auto mb-1 flex items-center justify-center text-white shadow">
+              🧪
+            </div>
+            <h3 class="s9-title !mb-1">Сорбція токсинів у ШКТ — як це працює</h3>
+
+            <!-- Легенда -->
+            <div class="grid grid-cols-3 gap-2 text-[11px] text-gray-700 mb-1">
+              <div class="flex items-center gap-2"><span class="s9-dot" style="background:#f97316"></span> Токсини</div>
+              <div class="flex items-center gap-2"><span class="s9-dot" style="background:#10b981"></span> Каолін</div>
+              <div class="flex items-center gap-2"><span class="s9-dot" style="background:#06b6d4"></span> Клітковина</div>
+            </div>
+
+            <!-- Полотно (точно вписане в 190px) -->
+            <div class="relative w-full rounded-xl overflow-hidden shadow-inner border border-emerald-200 bg-slate-900" style="height:190px;">
+              <svg class="w-full h-full block" viewBox="0 0 280 140" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                  <linearGradient id="lGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#22c55e" stop-opacity="0.35"/>
+                  </linearGradient>
+                  <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#22c55e"/>
+                  </marker>
+                </defs>
+
+                <!-- Просвіт -->
+                <path id="lumen" d="M10,85 C40,40 80,120 120,80 C160,40 200,120 240,70"
+                      fill="none" stroke="url(#lGrad)" stroke-width="18" stroke-linecap="round" opacity="0.9" filter="url(#glow)"/>
+                <path d="M10,85 C40,40 80,120 120,80 C160,40 200,120 240,70"
+                      fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+
+                <!-- Зона сорбції -->
+                <g transform="translate(200,60)" opacity="0.95">
+                  <rect x="-18" y="-12" width="36" height="24" rx="6" fill="#06b6d4" opacity="0.25"/>
+                  <g>
+                    <rect x="-8" y="-8" width="10" height="10" rx="2" fill="#10b981"/>
+                    <rect x="2"  y="-6" width="9"  height="9"  rx="2" fill="#34d399"/>
+                    <rect x="-14" y="-2" width="9"  height="9"  rx="2" fill="#059669"/>
+                    <rect x="-2"  y="2"  width="8"  height="8"  rx="2" fill="#16a34a"/>
+                  </g>
+                  <text x="0" y="-18" text-anchor="middle" font-size="9" fill="#a7f3d0" style="font-weight:600;">Зона сорбції</text>
+                  <circle cx="0" cy="0" r="14" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.45">
+                    <animate attributeName="r" values="12;26;12" dur="3.6s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values=".5;0;.5" dur="3.6s" repeatCount="indefinite"/>
+                  </circle>
+                </g>
+
+                <!-- Частинки -->
+                <g>
+                  <circle r="3" fill="#f97316" filter="url(#glow)">
+                    <animateMotion dur="3s" repeatCount="indefinite"><mpath href="#lumen"/></animateMotion>
+                    <animate attributeName="r" values="3;1.2" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;0.25" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle r="2.6" fill="#ef4444" filter="url(#glow)">
+                    <animateMotion dur="2.6s" repeatCount="indefinite" begin=".3s"><mpath href="#lumen"/></animateMotion>
+                    <animate attributeName="r" values="2.6;1.0" dur="2.6s" repeatCount="indefinite" begin=".3s"/>
+                    <animate attributeName="opacity" values="1;0.25" dur="2.6s" repeatCount="indefinite" begin=".3s"/>
+                  </circle>
+                </g>
+
+                <!-- Стрілка виведення -->
+                <line x1="220" y1="70" x2="266" y2="70" stroke="#22c55e" stroke-width="3" marker-end="url(#arr)" opacity="0.9"/>
+                <text x="268" y="73" font-size="9" fill="#86efac" style="font-weight:600;">Виведення</text>
+              </svg>
+
+              <!-- Плашки -->
+              <div class="absolute left-2 top-2 flex items-center gap-2 text-[11px]">
+                <span class="s9-pill">1 Токсини</span>
+                <span class="s9-pill">2 Зв’язування</span>
+                <span class="s9-pill">3 Виведення</span>
+              </div>
+              <div class="absolute bottom-2 right-2 bg-black/45 rounded px-2 py-1">
+                <div class="text-center">
+                  <div class="text-xs font-semibold text-emerald-300 mb-1">Зв’язано токсинів</div>
+                  <div class="s9-progress h-1.5 w-28"><i class="text-emerald-400" style="--w:96%"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 / Col 1: Динаміка -->
+          <div class="s9-card">
+            <h3 class="s9-title !mb-2">Динаміка</h3>
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[11px] font-bold">1</div>
+                <div>
+                  <div class="font-medium text-gray-900 leading-tight">0–6 год</div>
+                  <div class="text-gray-600 leading-tight">Початкове полегшення</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-[11px] font-bold">2</div>
+                <div>
+                  <div class="font-medium text-gray-900 leading-tight">6–24 год</div>
+                  <div class="text-gray-600 leading-tight">Стабілізація</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-[11px] font-bold">3</div>
+                <div>
+                  <div class="font-medium text-gray-900 leading-tight">2–3 доби</div>
+                  <div class="text-gray-600 leading-tight">Максимальний ефект</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 / Col 2: Стовпчик показників (4 однакові міні-картки) -->
+          <div class="grid" style="grid-template-rows:repeat(4,1fr); gap:10px;">
+            <div class="s9-mini from-blue-50 to-blue-100 border-blue-200">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center shadow"><span class="text-sm text-white">✅</span></div>
+                <div class="flex-1">
+                  <div class="text-sm font-bold text-blue-600 leading-tight">96,3%</div>
+                  <div class="text-xs text-gray-600 leading-tight">% полегшення</div>
+                </div>
+              </div>
+            </div>
+            <div class="s9-mini from-emerald-50 to-emerald-100 border-emerald-200">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-emerald-600 rounded-lg flex items-center justify-center shadow"><span class="text-sm text-white">⚡</span></div>
+                <div class="flex-1">
+                  <div class="text-sm font-bold text-emerald-600 leading-tight">30</div>
+                  <div class="text-xs text-gray-600 leading-tight">хв до ефекту</div>
+                </div>
+              </div>
+            </div>
+            <div class="s9-mini from-purple-50 to-purple-100 border-purple-200">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-purple-600 rounded-lg flex items-center justify-center shadow"><span class="text-sm text-white">🤢</span></div>
+                <div class="flex-1">
+                  <div class="text-sm font-bold text-purple-600 leading-tight">−88%</div>
+                  <div class="text-xs text-gray-600 leading-tight">нудоти</div>
+                </div>
+              </div>
+            </div>
+            <div class="s9-mini from-amber-50 to-amber-100 border-amber-200">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-amber-600 rounded-lg flex items-center justify-center shadow"><span class="text-sm text-white">💧</span></div>
+                <div class="flex-1">
+                  <div class="text-sm font-bold text-amber-600 leading-tight">−82,5%</div>
+                  <div class="text-xs text-gray-600 leading-tight">діареї</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 / Col 3: Коробка -->
+          <div class="s9-card flex items-center justify-center">
+            <img src="assets/CV69qllMsILlf6eTx1EiH.png" alt="SorbiTox Product" class="max-h-56 object-contain drop-shadow-2xl">
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Локальні стилі -->
+      <style>
+        /* Базові картки */
+        #slide-9 .s9-card{
+          background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:12px;
+          box-shadow:0 10px 24px rgba(2,6,23,.06);
+          display:flex;flex-direction:column;justify-content:flex-start;gap:8px;overflow:hidden;
+        }
+        #slide-9 .s9-card--inf{background:linear-gradient(135deg,#ecfdf5 0%,#eff6ff 100%);border:2px solid #a7f3d0;}
+
+        #slide-9 .s9-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 16px rgba(2,6,23,.12);margin:0 auto;}
+        #slide-9 .s9-title{font-weight:700;font-size:14px;line-height:1.1;color:#111827;text-align:center;margin:0;}
+
+        /* Метрики у маленьких картках */
+        #slide-9 .s9-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:4px;}
+        #slide-9 .s9-metric{background:#f8fafc;border:1px solid #eef2f7;border-radius:12px;padding:8px;text-align:center}
+        #slide-9 .s9-value{font-weight:800;font-size:16px;line-height:1;margin-bottom:3px}
+        #slide-9 .s9-label{font-size:12px;line-height:1.1;color:#6b7280;white-space:nowrap}
+
+        /* Міні-картки у стовпчику */
+        #slide-9 .s9-mini{background-image:linear-gradient(to bottom right,var(--tw-gradient-from),var(--tw-gradient-to));
+          border-width:2px;border-radius:14px;padding:10px}
+
+        /* Декор інфографіки */
+        #slide-9 .s9-dot{width:.65rem;height:.65rem;border-radius:9999px;display:inline-block;box-shadow:0 0 0 2px rgba(255,255,255,.6) inset}
+        #slide-9 .s9-pill{background:rgba(15,23,42,.55);color:#e2e8f0;padding:.16rem .42rem;border-radius:.5rem;border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(2px)}
+        #slide-9 .s9-progress{background:#0b1220;border-radius:9999px;overflow:hidden}
+        #slide-9 .s9-progress>i{display:block;height:100%;width:0;background:currentColor;border-radius:9999px;animation:s9grow 1s ease-out forwards}
+        @keyframes s9grow{from{width:0}to{width:var(--w,100%)}}
+      </style>
+    </div>
+  </div>
+</div>
+
+<!-- Масштабування 1280×720 з урахуванням fixed-елементів -->
+<script>
+(function fitSlide9(){
+  const slide = document.getElementById('slide-9');
+  if(!slide) return;
+  const stage = slide.querySelector('.s9-stage');
+
+  function safeInsets(){
+    const fixedEls = Array.from(document.querySelectorAll('.fixed,[data-fixed]'));
+    let top=8,bottom=8,left=8,right=8;
+    fixedEls.forEach(el=>{
+      const r = el.getBoundingClientRect();
+      if(!r||!r.height||!r.width) return;
+      if(r.top<=0 && r.bottom>0) top=Math.max(top,Math.ceil(r.bottom)+8);
+      if(r.bottom>=innerHeight && r.top<innerHeight) bottom=Math.max(bottom,Math.ceil(innerHeight-r.top)+8);
+      if(r.left<=0 && r.right>0) left=Math.max(left,Math.ceil(r.right)+8);
+      if(r.right>=innerWidth && r.left<innerWidth) right=Math.max(right,Math.ceil(innerWidth-r.left)+8);
+    });
+    return {top,bottom,left,right};
+  }
+  function fit(){
+    const {top,bottom,left,right}=safeInsets();
+    const w=Math.max(320,innerWidth-left-right);
+    const h=Math.max(240,innerHeight-top-bottom);
+    const s=Math.min(w/1280,h/720,1);
+    stage.style.setProperty('--s9',s);
+  }
+  addEventListener('resize',fit,{passive:true});
+  addEventListener('orientationchange',fit);
+  requestAnimationFrame(fit);
+})();
+</script>
+
+
+
+
+
+
+
+<!-- Desktop Navigation - Left side --> <div class="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:block"> <button onclick="prevSlide()" class="bg-white text-gray-700 p-3 rounded-full border border-gray-300 font-medium shadow-lg hover:bg-gray-50 transition hover:scale-110"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/> </svg> </button> </div> 
+<!-- Desktop Navigation - Right side --> <div class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:block"> <button onclick="nextSlide()" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition font-medium shadow-lg hover:scale-110"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/> </svg> </button> </div> 
+<!-- Mobile Navigation Bottom --> <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-xl z-50 md:hidden"> <div class="flex items-center justify-between px-4 py-3"> <button onclick="prevSlide()" class="bg-gray-100 text-gray-700 p-3 rounded-full border border-gray-300 shadow-md active:scale-95 transition-transform"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/> </svg> </button> <div class="flex space-x-2"> <div class="indicator active" onclick="goToSlide(1)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(2)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(3)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(4)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(5)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(6)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(7)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(8)" style="width: 8px; height: 8px;"></div> <div class="indicator" onclick="goToSlide(9)" style="width: 8px; height: 8px;"></div> </div> <button onclick="nextSlide()" class="bg-blue-600 text-white p-3 rounded-full shadow-md active:scale-95 transition-transform"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/> </svg> </button> </div> </div> 
+<!-- Desktop Slide counter - Top right --> <div class="fixed top-4 right-4 z-50 hidden md:block"> <span id="slide-counter" class="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium shadow-lg"> 1 / 9 </span> </div> 
+<!-- Mobile Slide counter - Top center --> <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 md:hidden"> <span id="slide-counter-mobile" class="bg-gray-900 text-white px-3 py-1 rounded-lg text-sm font-medium shadow-lg"> 1 / 9 </span> </div> 
+<!-- Desktop Slide indicators - Top center --> <div class="fixed top-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-50 hidden md:flex"> <div class="indicator active" onclick="goToSlide(1)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(2)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(3)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(4)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(5)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(6)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(7)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(8)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(9)" style="width: 10px; height: 10px;"></div> </div> <div class="fixed left-4 top-1/2 transform -translate-y-1/2 z-50"> <button onclick="prevSlide()" class="bg-white text-gray-700 p-3 rounded-full border border-gray-300 font-medium shadow-lg hover:bg-gray-50 transition hover:scale-110"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/> </svg> </button> </div> 
+<!-- Navigation - Right side --> <div class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50"> <button onclick="nextSlide()" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition font-medium shadow-lg hover:scale-110"> <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"> <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/> </svg> </button> </div> <!-- Slide counter - Top right --> <div class="fixed top-4 right-4 z-50"> <span id="slide-counter" class="bg-gray-900 text-white px-4 py-2 rounded-lg font-medium shadow-lg"> 1 / 9 </span> </div> 
+<!-- Slide indicators - Top center --> <div class="fixed top-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-50"> <div class="indicator active" onclick="goToSlide(1)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(2)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(3)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(4)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(5)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(6)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(7)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(8)" style="width: 10px; height: 10px;"></div> <div class="indicator" onclick="goToSlide(9)" style="width: 10px; height: 10px;"></div> </div> </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 9;
+
+        function showSlide(n) {
+            console.log('🔄 Showing slide:', n, 'Current:', currentSlide);
+            
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const counter = document.getElementById('slide-counter');
+            const mobileCounter = document.getElementById('slide-counter-mobile');
+            
+            console.log('📋 Found', slides.length, 'slides and', indicators.length, 'indicators');
+            
+            // Validate slide number and set currentSlide
+            if (n > totalSlides) {
+                console.log('⚠️ Slide number too high, wrapping to slide 1');
+                currentSlide = 1;
+            } else if (n < 1) {
+                console.log('⚠️ Slide number too low, wrapping to last slide');
+                currentSlide = totalSlides;
+            } else {
+                currentSlide = n;
+            }
+            
+            console.log('🎯 Will show slide:', currentSlide);
+            
+            // Hide all slides first
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+                slide.style.display = 'none';
+            });
+            
+            // Reset all indicators
+            indicators.forEach((indicator) => {
+                indicator.classList.remove('active');
+                indicator.style.transform = 'scale(1)';
+                indicator.style.boxShadow = 'none';
+            });
+            
+            // Show target slide with enhanced error handling
+            const targetSlide = document.getElementById('slide-' + currentSlide);
+            if (targetSlide) {
+                console.log('✅ Found target slide:', 'slide-' + currentSlide);
+                targetSlide.style.display = 'flex';
+                targetSlide.classList.add('active');
+                
+                // Add a small delay to ensure DOM is ready, then animate
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        console.log('🎨 Starting animations for slide', currentSlide);
+                        animateSlideElements(currentSlide);
+                    }, 50);
+                });
+            } else {
+                console.error('❌ Slide not found:', 'slide-' + currentSlide);
+                console.error('💡 Available slides:', Array.from(slides).map(s => s.id));
+                return;
+            }
+            
+            // Update indicators (both desktop and mobile)
+            const allIndicators = document.querySelectorAll('.indicator');
+            allIndicators.forEach((indicator, index) => {
+                if (index === currentSlide - 1) {
+                    indicator.classList.add('active');
+                    indicator.style.transform = window.innerWidth < 768 ? 'scale(1.3)' : 'scale(1.2)';
+                    indicator.style.boxShadow = '0 3px 10px rgba(59, 130, 246, 0.4)';
+                } else {
+                    indicator.classList.remove('active');
+                    indicator.style.transform = 'scale(1)';
+                    indicator.style.boxShadow = 'none';
+                }
+            });
+            
+            // Update counters (both desktop and mobile)
+            const counterText = currentSlide + ' / ' + totalSlides;
+            if (counter) {
+                counter.textContent = counterText;
+            }
+            if (mobileCounter) {
+                mobileCounter.textContent = counterText;
+            }
+        }
+
+        function nextSlide() {
+            console.log('➡️ Next slide clicked. Current:', currentSlide);
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            } else {
+                console.log('🔄 At last slide, wrapping to first');
+                showSlide(1);
+            }
+        }
+
+        function prevSlide() {
+            console.log('⬅️ Previous slide clicked. Current:', currentSlide);
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            } else {
+                console.log('🔄 At first slide, wrapping to last');
+                showSlide(totalSlides);
+            }
+        }
+
+        function goToSlide(n) {
+            console.log('🎯 Go to slide clicked:', n, 'from current:', currentSlide);
+            if (n >= 1 && n <= totalSlides) {
+                showSlide(n);
+            } else {
+                console.error('❌ Invalid slide number:', n);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Touch navigation for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+            touchStartY = event.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            touchEndY = event.changedTouches[0].screenY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            const minSwipeDistance = 50;
+            
+            // Only process horizontal swipes that are larger than vertical swipes
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+                if (deltaX > 0) {
+                    // Swipe right - go to previous slide
+                    prevSlide();
+                } else {
+                    // Swipe left - go to next slide
+                    nextSlide();
+                }
+            }
+        }
+
+        // Create particles
+        function createParticles() {
+            const particleContainer = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 8) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Create subtle floating elements
+        function createFloatingElements() {
+            const container = document.getElementById('matrix');
+            // Remove matrix effect for cleaner look
+        }
+
+        // Dynamic data updates
+        function updateStats() {
+            const statusElements = document.querySelectorAll('[data-stat]');
+            statusElements.forEach(el => {
+                const currentValue = parseFloat(el.textContent);
+                const variation = (Math.random() - 0.5) * 0.2;
+                const newValue = (currentValue + variation).toFixed(1);
+                el.textContent = newValue + '%';
+            });
+        }
+
+        // Enhanced slide transitions
+        function enhanceSlideTransitions() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                
+                // Add staggered animation to cards when slide becomes active
+                const cards = slide.querySelectorAll('.clinical-card, .clinical-badge');
+                cards.forEach((card, cardIndex) => {
+                    card.classList.add('staggered-fade');
+                    card.style.animationDelay = (cardIndex * 0.1) + 's';
+                });
+            });
+        }
+        
+        // Animate elements on slide change
+        function animateSlideElements(slideNumber) {
+            const currentSlide = document.getElementById('slide-' + slideNumber);
+            if (!currentSlide) return;
+            
+            // Reset animations
+            const animatedElements = currentSlide.querySelectorAll('.clinical-card, .clinical-badge, h2, h3');
+            animatedElements.forEach((el, index) => {
+                el.style.animation = 'none';
+                el.offsetHeight; // Trigger reflow
+                el.style.animation = `fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards`;
+                el.style.animationDelay = (index * 0.1) + 's';
+                el.style.opacity = '0';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                }, (index * 100) + 100);
+            });
+            
+            // Special animations for specific slides
+            if (slideNumber === 1) {
+                const logo = currentSlide.querySelector('img');
+                if (logo) {
+                    logo.style.animation = 'bounceIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards';
+                }
+            }
+            
+            if (slideNumber === 2) {
+                const productCards = currentSlide.querySelectorAll('.clinical-card');
+                productCards.forEach((card, index) => {
+                    if (index % 2 === 0) {
+                        card.classList.add('slide-in-left');
+                    } else {
+                        card.classList.add('slide-in-right');
+                    }
+                    card.style.animationDelay = (index * 0.2) + 's';
+                });
+            }
+        }
+        
+        // Enhanced particle system
+        function createEnhancedParticles() {
+            const particleContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 6 + 10) + 's';
+                
+                // Random sizes
+                const size = Math.random() * 3 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                particleContainer.appendChild(particle);
+            }
+        }
+        
+        // Button animations
+        function enhanceButtonAnimations() {
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.05)';
+                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+                });
+                
+                button.addEventListener('click', function() {
+                    this.style.transform = 'translateY(1px) scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-2px) scale(1.05)';
+                    }, 150);
+                });
+            });
+        }
+        
+        // Enhanced indicator animations
+        function enhanceIndicators() {
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                
+                indicator.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.5) translateY(-3px)';
+                    this.style.boxShadow = '0 5px 15px rgba(59, 130, 246, 0.4)';
+                });
+                
+                indicator.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'scale(1) translateY(0)';
+                        this.style.boxShadow = 'none';
+                    }
+                });
+            });
+        }
+        
+        // Animate counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                if (!target) return; // Skip if no target
+                
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.ceil(current);
+                    }
+                }, 20);
+            });
+        }
+        
+        // Animate progress bars
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                }, index * 200);
+            });
+        }
+        
+        // Enhanced slide elements animation
+        function animateSlideElements(slideNumber) {
+            const currentSlide = document.getElementById('slide-' + slideNumber);
+            if (!currentSlide) {
+                console.error('Cannot animate elements for slide:', slideNumber);
+                return;
+            }
+            
+            console.log('Animating elements for slide:', slideNumber);
+            
+            // Reset and animate basic elements
+            const animatedElements = currentSlide.querySelectorAll('.clinical-card, .clinical-badge, h2, h3');
+            animatedElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease-out';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // Special animations for component bars on slide 2
+            if (slideNumber === 2) {
+                setTimeout(() => {
+                    const componentBars = currentSlide.querySelectorAll('[class*="component-bar-"]');
+                    componentBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            const width = bar.getAttribute('data-width');
+                            if (width) {
+                                bar.style.width = width + '%';
+                            }
+                        }, index * 200 + 500);
+                    });
+                }, 300);
+            }
+            
+            // Animate effect bars on slide 3
+            if (slideNumber === 3) {
+                setTimeout(() => {
+                    const effectBars = currentSlide.querySelectorAll('.effect-bar');
+                    effectBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            const width = bar.getAttribute('data-width');
+                            if (width) {
+                                bar.style.width = width + '%';
+                            }
+                        }, index * 150 + 400);
+                    });
+                    
+                    const cardioBar = currentSlide.querySelector('.cardio-bar');
+                    if (cardioBar) {
+                        setTimeout(() => {
+                            const width = cardioBar.getAttribute('data-width');
+                            if (width) {
+                                cardioBar.style.width = width + '%';
+                            }
+                        }, 1000);
+                    }
+                }, 400);
+            }
+            
+            // Animate treatment stats on slide 4
+            if (slideNumber === 4) {
+                setTimeout(() => {
+                    const treatmentBar = currentSlide.querySelector('.treatment-bar');
+                    const comorbidBar = currentSlide.querySelector('.comorbid-bar');
+                    
+                    if (treatmentBar) {
+                        const width = treatmentBar.getAttribute('data-width');
+                        if (width) {
+                            treatmentBar.style.width = width + '%';
+                        }
+                    }
+                    
+                    if (comorbidBar) {
+                        setTimeout(() => {
+                            const width = comorbidBar.getAttribute('data-width');
+                            if (width) {
+                                comorbidBar.style.width = width + '%';
+                            }
+                        }, 600);
+                    }
+                    
+                    // Animate counter for slide 4
+                    const slideCounters = currentSlide.querySelectorAll('.counter');
+                    slideCounters.forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        if (!target) return;
+                        
+                        let current = 0;
+                        const increment = target / 60;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.ceil(current);
+                            }
+                        }, 30);
+                    });
+                }, 600);
+            }
+            
+            // Animate course progress on slide 5
+            if (slideNumber === 5) {
+                setTimeout(() => {
+                    const allBars = [
+                        '.duration-bar',
+                        '.course-bar-1',
+                        '.course-bar-2', 
+                        '.course-bar-3',
+                        '.compliance-bar'
+                    ];
+                    
+                    allBars.forEach((selector, index) => {
+                        const bar = currentSlide.querySelector(selector);
+                        if (bar) {
+                            setTimeout(() => {
+                                const width = bar.getAttribute('data-width');
+                                if (width) {
+                                    bar.style.width = width + '%';
+                                }
+                            }, index * 300);
+                        }
+                    });
+                }, 500);
+            }
+            
+            // Animate advantages on slide 7
+            if (slideNumber === 7) {
+                setTimeout(() => {
+                    const advantageBars = currentSlide.querySelectorAll('[class*="advantage-bar-"]');
+                    advantageBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            const width = bar.getAttribute('data-width');
+                            if (width) {
+                                bar.style.width = width + '%';
+                            }
+                        }, index * 200);
+                    });
+                    
+                    // Animate counters for slide 7
+                    const slideCounters = currentSlide.querySelectorAll('.counter');
+                    slideCounters.forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        if (!target) return;
+                        
+                        let current = 0;
+                        const increment = target / 80;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.ceil(current);
+                            }
+                        }, 25);
+                    });
+                }, 600);
+            }
+            
+            // Animate doctor bars and counters on slide 8
+            if (slideNumber === 8) {
+                setTimeout(() => {
+                    const doctorBars = currentSlide.querySelectorAll('[class*="doctor-bar-"], .doctor-satisfaction-bar');
+                    doctorBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            const width = bar.getAttribute('data-width');
+                            if (width) {
+                                bar.style.width = width + '%';
+                            }
+                        }, index * 300);
+                    });
+                    
+                    // Animate counters for slide 8
+                    const slideCounters = currentSlide.querySelectorAll('.counter');
+                    slideCounters.forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        if (!target) return;
+                        
+                        let current = 0;
+                        const increment = target / 80;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                if (target % 1 !== 0) {
+                                    counter.textContent = target.toFixed(1);
+                                } else {
+                                    counter.textContent = target;
+                                }
+                                clearInterval(timer);
+                            } else {
+                                if (target % 1 !== 0 && current > target * 0.8) {
+                                    counter.textContent = current.toFixed(1);
+                                } else {
+                                    counter.textContent = Math.ceil(current);
+                                }
+                            }
+                        }, 25);
+                    });
+                }, 800);
+            }
+            
+            // Animate clinical data on slide 9
+            if (slideNumber === 9) {
+                setTimeout(() => {
+                    const progressBars = currentSlide.querySelectorAll('.progress-bar');
+                    progressBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            const width = bar.getAttribute('data-width');
+                            if (width) {
+                                bar.style.width = width + '%';
+                            }
+                        }, index * 250);
+                    });
+                    
+                    // Animate counters for slide 9
+                    const slideCounters = currentSlide.querySelectorAll('.counter');
+                    slideCounters.forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        if (!target) return;
+                        
+                        let current = 0;
+                        const increment = target / 100;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                if (target % 1 !== 0) {
+                                    counter.textContent = target.toFixed(1);
+                                } else {
+                                    counter.textContent = target;
+                                }
+                                clearInterval(timer);
+                            } else {
+                                if (target % 1 !== 0 && current > target * 0.8) {
+                                    counter.textContent = current.toFixed(1);
+                                } else {
+                                    counter.textContent = Math.ceil(current);
+                                }
+                            }
+                        }, 20);
+                    });
+                }, 700);
+            }
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 DOM loaded, initializing enhanced presentation');
+            console.log('📊 Total slides:', totalSlides);
+            
+            // Check if all slides exist and log their status
+            let slidesFound = 0;
+            for (let i = 1; i <= totalSlides; i++) {
+                const slide = document.getElementById('slide-' + i);
+                if (slide) slidesFound++;
+                console.log(`📄 Slide ${i} exists:`, !!slide);
+            }
+            console.log(`✅ Found ${slidesFound}/${totalSlides} slides`);
+            
+            // Initialize currentSlide properly
+            currentSlide = 1;
+            
+            // Initialize enhanced features
+            createEnhancedParticles();
+            enhanceSlideTransitions();
+            enhanceButtonAnimations();
+            enhanceIndicators();
+            
+            // Show first slide with proper initialization
+            console.log('🎯 Initializing first slide...');
+            showSlide(1);
+            
+            // Double-check first slide visibility
+            setTimeout(() => {
+                const firstSlide = document.getElementById('slide-1');
+                if (firstSlide) {
+                    firstSlide.style.display = 'flex';
+                    firstSlide.classList.add('active');
+                    console.log('✅ First slide is now visible');
+                } else {
+                    console.error('❌ First slide not found during initialization');
+                }
+            }, 100);
+            
+            console.log('🎉 Presentation initialization complete!');
+        });
+    </script>
+</body>
+</html>
