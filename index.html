@@ -770,7 +770,7 @@
       <img src="assets/logo.png" 
            alt="Boiko Clinic Logo" 
            class="object-contain drop-shadow-xl"
-           style="max-width: 60%; max-height: 60%;">
+           style="max-width: 50%; max-height: 50%;">
     </div>
   </div>
 </div>
@@ -784,70 +784,71 @@
          class="h-16 w-auto opacity-95 shadow-xl rounded-lg bg-white p-2.5 border border-gray-200">
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 md:px-6 w-full h-full flex flex-col py-4">
+  <!-- Внутрішній контейнер -->
+  <div class="max-w-7xl mx-auto px-4 md:px-6 w-full h-full flex flex-col py-4 min-h-0">
     <!-- Заголовок -->
-    <div class="text-center mb-4">
-      <h2 class="text-xl md:text-3xl font-bold text-gray-900" style="font-family:'Inter';letter-spacing:.5px;">
+    <div class="text-center mb-3 md:mb-4 shrink-0">
+      <h2 class="text-xl md:text-3xl font-bold text-gray-900" style="font-family:'Inter',system-ui;letter-spacing:.5px;">
         Склад препарату <span class="text-blue-700">Сорбітокс</span>
       </h2>
     </div>
 
-    <!-- Контент -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 flex-1 items-stretch min-h-0">
-      <!-- Ліва колонка: компоненти + детально -->
+    <!-- Контент 2 колонки -->
+    <div class="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-5 flex-1 items-stretch min-h-0">
+      <!-- Ліва колонка: 2 картки + блок «Детально» -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 grid-rows-[minmax(0,1fr)_auto] h-full min-h-0">
         <!-- Каолін -->
-        <div class="bg-white rounded-2xl shadow-lg border border-blue-50 p-4 flex flex-col h-full min-h-[196px]">
+        <div class="bg-white rounded-2xl shadow-lg border border-blue-50 p-4 flex flex-col h-full overflow-hidden">
           <div class="flex items-center gap-3 mb-3">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center shadow">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center shadow shrink-0">
               <span class="text-2xl md:text-3xl">🧱</span>
             </div>
-            <div class="flex-1">
+            <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2 flex-wrap">
                 <h3 class="font-semibold text-gray-900 text-sm md:text-base leading-tight">Каолін</h3>
                 <span class="text-[11px] md:text-xs px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-medium">6,5 г</span>
               </div>
-              <div class="text-[11px] text-blue-600 mt-0.5">Харчова біла глина • адсорбент</div>
+              <div class="text-[11px] md:text-xs text-blue-600 mt-0.5">Харчова біла глина • адсорбент</div>
             </div>
           </div>
           <div class="mt-auto">
-            <div class="text-[11px] md:text-xs text-gray-600 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+            <div class="text-[11px] md:text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 leading-relaxed">
               <span class="font-medium text-gray-800">Ключове:</span> виражений детокс-ефект, швидке зв’язування токсинів та алергенів.
             </div>
           </div>
         </div>
 
         <!-- Шрот зародків пшениці -->
-        <div class="bg-white rounded-2xl shadow-lg border border-emerald-50 p-4 flex flex-col h-full min-h-[196px]">
+        <div class="bg-white rounded-2xl shadow-lg border border-emerald-50 p-4 flex flex-col h-full overflow-hidden">
           <div class="flex items-center gap-3 mb-3">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white flex items-center justify-center shadow">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white flex items-center justify-center shadow shrink-0">
               <span class="text-2xl md:text-3xl">🌾</span>
             </div>
-            <div class="flex-1">
+            <div class="flex-1 min-w-0">
               <div class="flex items-center gap-2 flex-wrap">
                 <h3 class="font-semibold text-gray-900 text-sm md:text-base leading-tight">Шрот зародків пшениці</h3>
                 <span class="text-[11px] md:text-xs px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium">3,5 г</span>
               </div>
-              <div class="text-[11px] text-emerald-600 mt-0.5">Клітковина • мінерали • мікроелементи</div>
+              <div class="text-[11px] md:text-xs text-emerald-700 mt-0.5">Клітковина • мінерали • мікроелементи</div>
             </div>
           </div>
           <div class="mt-auto">
-            <div class="text-[11px] md:text-xs text-gray-600 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+            <div class="text-[11px] md:text-xs text-gray-700 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 leading-relaxed">
               <span class="font-medium text-gray-800">Ключове:</span> додатковий сорбційний ефект, краща евакуація, підтримка мікрофлори.
             </div>
           </div>
         </div>
 
         <!-- Детально про склад (повна ширина, 2-й ряд) -->
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:col-span-2 sm:row-start-2">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 sm:col-span-2 sm:row-start-2 overflow-hidden">
           <div class="flex items-center gap-2 mb-2">
-            <div class="w-6 h-6 rounded-md bg-indigo-600 text-white text-xs flex items-center justify-center shadow">i</div>
+            <div class="w-6 h-6 rounded-md bg-indigo-600 text-white text-xs flex items-center justify-center shadow shrink-0">i</div>
             <h4 class="font-semibold text-sm md:text-base text-gray-900">Детально про склад</h4>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <!-- Каолін callout -->
-            <div class="rounded-xl border border-blue-100 bg-blue-50/40 p-3">
+            <div class="rounded-xl border border-blue-100 bg-blue-50/40 p-3 h-full">
               <div class="flex items-start gap-2">
                 <span class="mt-0.5 text-lg">🧱</span>
                 <p class="text-xs md:text-[13px] text-gray-800 leading-relaxed">
@@ -858,7 +859,7 @@
               </div>
             </div>
             <!-- Шрот callout -->
-            <div class="rounded-xl border border-emerald-100 bg-emerald-50/40 p-3">
+            <div class="rounded-xl border border-emerald-100 bg-emerald-50/40 p-3 h-full">
               <div class="flex items-start gap-2">
                 <span class="mt-0.5 text-lg">🌾</span>
                 <p class="text-xs md:text-[13px] text-gray-800 leading-relaxed">
@@ -873,13 +874,14 @@
       </div>
 
       <!-- Права колонка: упаковка -->
-      <div class="flex h-full">
-        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex items-center justify-center h-full w-full">
-          <!-- width/height резервируют место, чтобы не было скачка -->
-          <img src="/assets/sorbitox.png"
+      <div class="flex h-full min-h-0">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4 flex items-center justify-center h-full w-full overflow-hidden">
+          <!-- width/height резервують місце, щоб не було скачка -->
+          <img
+            src="/assets/sorbitox.png"
             alt="SorbiTox Product"
             width="700" height="950"
-            class="h-full w-auto max-h-[500px] md:max-h-[560px] object-contain drop-shadow-2xl"
+            class="h-[85%] max-h-full w-auto object-contain drop-shadow-2xl"
             decoding="async" loading="eager"
           >
         </div>
@@ -887,6 +889,7 @@
     </div>
   </div>
 </div>
+
 
 
 
