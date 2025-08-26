@@ -2546,5 +2546,14 @@
             console.log('🎉 Presentation initialization complete!');
         });
     </script>
+<script>
+  // Видаляє порожні слайди (без тексту і без медіа)
+  document.querySelectorAll('.slide').forEach(s => {
+    const hasText = s.textContent.trim().length > 0;
+    const hasMedia = s.querySelector('img,video,svg,canvas,iframe');
+    if (!hasText && !hasMedia) s.remove();
+  });
+</script>
+
 </body>
 </html>
