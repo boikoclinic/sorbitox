@@ -886,11 +886,9 @@
 
 
 
-
-
-
 <!-- Slide 3: Ефекти Сорбітокс -->
-<div class="slide bg-gray-50 mobile-scroll" id="slide-3">
+<div class="slide bg-gray-50 mobile-scroll" id="slide-3"
+     style="aspect-ratio:16/9; position:relative; overflow:hidden;">
   <!-- Логотип компанії -->
   <div class="absolute bottom-4 right-4 z-10 hidden md:block">
     <img src="assets/logo.png" alt="Boiko Clinic Logo" class="h-14 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
@@ -2584,12 +2582,19 @@
         });
     </script>
 <script>
-  // Видаляє порожні слайди (без тексту і без медіа)
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Прибрати дублі #slide-5 (залишити останній — актуальний)
+  const s5 = document.querySelectorAll('#slide-5');
+  s5.forEach((el, i) => { if (i < s5.length - 1) el.remove(); });
+
+  // Прибрати реально порожні .slide (лише коментарі/пробіли всередині)
   document.querySelectorAll('.slide').forEach(s => {
-    const hasText = s.textContent.trim().length > 0;
-    const hasMedia = s.querySelector('img,video,svg,canvas,iframe');
-    if (!hasText && !hasMedia) s.remove();
+    const html = s.innerHTML.replace(/<!--[\s\S]*?-->/g, '').trim();
+    const hasContent = s.querySelector('img,video,svg,canvas,iframe,section,ul,ol,h1,h2,h3,p');
+    if (!html && !hasContent) s.remove();
   });
+});
 </script>
 
 </body>
