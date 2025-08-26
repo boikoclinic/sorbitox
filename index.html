@@ -793,11 +793,11 @@
     </div>
 
     <!-- Контент -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 flex-1 items-stretch">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 flex-1 items-start">
       <!-- Ліва колонка: компоненти + детально -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 content-start auto-rows-fr">
         <!-- Каолін -->
-        <div class="bg-white rounded-2xl shadow-lg border border-blue-50 p-4 min-h-[170px] flex flex-col">
+        <div class="bg-white rounded-2xl shadow-lg border border-blue-50 p-4 min-h-[170px] flex flex-col h-full">
           <div class="flex items-center gap-3 mb-3">
             <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center shadow">
               <span class="text-2xl md:text-3xl">🧱</span>
@@ -818,7 +818,7 @@
         </div>
 
         <!-- Шрот зародків пшениці -->
-        <div class="bg-white rounded-2xl shadow-lg border border-emerald-50 p-4 min-h-[170px] flex flex-col">
+        <div class="bg-white rounded-2xl shadow-lg border border-emerald-50 p-4 min-h-[170px] flex flex-col h-full">
           <div class="flex items-center gap-3 mb-3">
             <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white flex items-center justify-center shadow">
               <span class="text-2xl md:text-3xl">🌾</span>
@@ -845,7 +845,7 @@
             <h4 class="font-semibold text-sm md:text-base text-gray-900">Детально про склад</h4>
           </div>
 
-          <!-- Два callout-бокси всередині замість простого списку -->
+          <!-- Два callout-бокси всередині -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <!-- Каолін callout -->
             <div class="rounded-xl border border-blue-100 bg-blue-50/40 p-3">
@@ -874,7 +874,7 @@
       </div>
 
       <!-- Права колонка: упаковка -->
-      <div class="flex items-center justify-center">
+      <div class="flex items-start justify-center">
         <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
           <img src="assets/sorbitox.png" alt="SorbiTox Product"
                class="max-h-[420px] md:max-h-[460px] object-contain drop-shadow-2xl mx-auto">
@@ -883,6 +883,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -1151,7 +1152,7 @@
 
 
 
-<!-- Slide 4: Показання до застосування (Сорбітокс) -->
+<!-- Slide 5: Показання до застосування (Сорбітокс) -->
 <div id="slide-4" class="slide bg-gray-50 mobile-scroll px-4 md:px-6 py-4 relative h-full">
 
   <!-- Заголовок -->
@@ -1253,8 +1254,8 @@
 </div>
 
 
-<!-- Slide 5: Спосіб застосування (Сорбітокс) -->
-<div class="slide bg-gray-50 flex items-center justify-center" id="slide-5">
+<!-- Slide 5: Спосіб застосування (Сорбітокс) — перероблено під вікові категорії -->
+<div class="slide bg-gray-50 flex items-center justify-center" id="slide-5" style="aspect-ratio:16/9; position:relative; overflow:hidden;">
   <!-- Логотип -->
   <div class="absolute bottom-4 right-4 z-10">
     <img src="assets/logo.png" alt="Boiko Clinic Logo" class="h-12 w-auto opacity-90 shadow-lg rounded-lg bg-white p-2">
@@ -1262,122 +1263,58 @@
 
   <div class="max-w-7xl mx-auto px-4 w-full h-full flex flex-col py-3">
     <h2 class="text-2xl md:text-3xl font-bold text-center mb-5 text-gray-900" style="font-family:'Inter';letter-spacing:.5px;">
-      Спосіб застосування
+      Спосіб застосування за віковими категоріями
     </h2>
 
-    <!-- 3 рівні колонки: усі однакової структури -->
+    <!-- 3 окремі картки за віком -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 flex-1 items-stretch">
 
-      <!-- 1) Дозування за віком -->
+      <!-- Діти 3–5 років -->
       <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
-        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Дозування за віком</h3>
-
-        <!-- Контент вирівняний, компактний -->
-        <div class="space-y-3 flex-1">
-          <!-- 3+ -->
-          <div class="flex items-center gap-3 p-3 rounded-lg border shadow-sm">
-            <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center text-lg">👶</div>
-            <div class="flex-1">
-              <div class="text-sm font-semibold text-gray-900">Діти з 3-х років</div>
-              <div class="text-xs text-gray-600">½ пакетика одноразово*</div>
-            </div>
-          </div>
-          <!-- 6+ -->
-          <div class="flex items-center gap-3 p-3 rounded-lg border shadow-sm">
-            <div class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-lg">🧒</div>
-            <div class="flex-1">
-              <div class="text-sm font-semibold text-gray-900">Діти з 6-ти років</div>
-              <div class="text-xs text-gray-600">1 пакетик одноразово*</div>
-            </div>
-          </div>
-          <!-- 12+ -->
-          <div class="flex items-center gap-3 p-3 rounded-lg border shadow-sm">
-            <div class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-lg">👨‍👩‍👧</div>
-            <div class="flex-1">
-              <div class="text-sm font-semibold text-gray-900">12+ років та дорослі</div>
-              <div class="text-xs text-gray-600">2–3 пакетики одноразово*</div>
-            </div>
-          </div>
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center text-lg">👶</div>
+          <h3 class="text-lg font-bold text-gray-900">Діти 3–5 років</h3>
         </div>
-
-        <!-- Примітка (корисна, коротка) -->
-        <div class="mt-3 bg-blue-50 text-blue-700 text-xs p-2 rounded text-center border border-blue-200">
-          💡 Пакетик використовують <b>одноразово</b>
-        </div>
-      </section>
-
-      <!-- 2) Як приймати (повноширокі кроки у стовпчик) -->
-      <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
-        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Як приймати</h3>
-
-        <div class="space-y-3 flex-1">
-          <!-- Крок 1 -->
-          <div class="flex items-center gap-4 p-4 rounded-lg border shadow-sm">
-            <div class="w-12 h-12 bg-sky-600 text-white rounded-lg flex items-center justify-center text-xl flex-shrink-0">💧</div>
-            <div class="flex flex-col">
-              <span class="text-sm font-semibold text-gray-900">Розчинити</span>
-              <span class="text-xs text-gray-600">В 100 мл води кімнатної температури</span>
-            </div>
-          </div>
-          <!-- Крок 2 -->
-          <div class="flex items-center gap-4 p-4 rounded-lg border shadow-sm">
-            <div class="w-12 h-12 bg-amber-600 text-white rounded-lg flex items-center justify-center text-xl flex-shrink-0">🥤</div>
-            <div class="flex flex-col">
-              <span class="text-sm font-semibold text-gray-900">Прийняти</span>
-              <span class="text-xs text-gray-600">Одразу після приготування</span>
-            </div>
-          </div>
-          <!-- Крок 3 -->
-          <div class="flex items-center gap-4 p-4 rounded-lg border shadow-sm">
-            <div class="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-xl flex-shrink-0">🩺</div>
-            <div class="flex flex-col">
-              <span class="text-sm font-semibold text-gray-900">Курс лікування</span>
-              <span class="text-xs text-gray-600">Тривалість визначає лікар</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Примітка (про порошок) -->
-        <div class="mt-3 bg-emerald-50 text-emerald-700 text-xs p-2 rounded text-center border border-emerald-200">
-          💡 Не змішувати з соками чи газованими напоями
-        </div>
-      </section>
-
-      <!-- 3) Упаковка + Застереження (велика упаковка) -->
-      <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
-        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Упаковка та застереження</h3>
-
-        <!-- Упаковка збільшена та по центру -->
-        <div class="flex justify-center items-center flex-1 mb-4">
-          <!-- Постав свій id/посилання на зображення упаковки SorbiTox -->
-          <img src="assets/sorbitox.png" alt="SorbiTox Product" class="max-h-[360px] object-contain drop-shadow-2xl">
-        </div>
-
-        <!-- Застереження компактно -->
-        <ul class="text-xs text-gray-800 space-y-2">
-          <li class="flex items-center gap-2">
-            <span class="w-5 h-5 bg-amber-600 text-white rounded flex items-center justify-center text-[11px]">!</span>
-            Індивідуальна чутливість до компонентів
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-5 h-5 bg-amber-600 text-white rounded flex items-center justify-center text-[11px]">!</span>
-            Діти до 3-х років
-          </li>
-          <li class="flex items-center gap-2">
-            <span class="w-5 h-5 bg-amber-600 text-white rounded flex items-center justify-center text-[11px]">!</span>
-            Вагітність та період лактації
-          </li>
+        <ul class="text-sm text-gray-800 space-y-2 flex-1">
+          <li><span class="font-semibold">Дозування:</span> ½ пакетика на один прийом.</li>
+          <li><span class="font-semibold">Приготування:</span> розчинити у <span class="whitespace-nowrap">100 мл</span> води кімнатної температури.</li>
+          <li><span class="font-semibold">Час прийому:</span> випити одразу після приготування.</li>
+          <li><span class="font-semibold">Курс:</span> тривалість визначає лікар.</li>
         </ul>
+      </section>
 
-        <!-- Примітка -->
-        <div class="mt-3 bg-amber-50 text-amber-700 text-xs p-2 rounded text-center border border-amber-200">
-          💡 Перед застосуванням порадьтеся з лікарем
+      <!-- Діти 6–11 років -->
+      <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-lg">🧒</div>
+          <h3 class="text-lg font-bold text-gray-900">Діти 6–11 років</h3>
         </div>
+        <ul class="text-sm text-gray-800 space-y-2 flex-1">
+          <li><span class="font-semibold">Дозування:</span> 1 пакетик на один прийом.</li>
+          <li><span class="font-semibold">Приготування:</span> розчинити у <span class="whitespace-nowrap">100 мл</span> води кімнатної температури.</li>
+          <li><span class="font-semibold">Час прийому:</span> випити одразу після приготування.</li>
+          <li><span class="font-semibold">Курс:</span> за рекомендацією лікаря.</li>
+        </ul>
+      </section>
+
+      <!-- 12+ років та дорослі -->
+      <section class="clinical-card bg-white p-5 shadow border rounded-xl flex flex-col">
+        <div class="flex items-center justify-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-lg">👨‍👩‍👧</div>
+          <h3 class="text-lg font-bold text-gray-900">12+ років та дорослі</h3>
+        </div>
+        <ul class="text-sm text-gray-800 space-y-2 flex-1">
+          <li><span class="font-semibold">Дозування:</span> 2–3 пакетики на один прийом.</li>
+          <li><span class="font-semibold">Приготування:</span> розчинити у <span class="whitespace-nowrap">100 мл</span> води кімнатної температури.</li>
+          <li><span class="font-semibold">Час прийому:</span> випити одразу після приготування.</li>
+          <li><span class="font-semibold">Курс:</span> визначається лікарем.</li>
+        </ul>
       </section>
 
     </div>
   </div>
 </div>
+
 
 
 
@@ -1882,7 +1819,7 @@
                 <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-[11px] font-bold">1</div>
                 <div>
                   <div class="font-medium text-gray-900 leading-tight">0–6 год</div>
-                  <div class="text-gray-600 leading-tight">Початкове полегшення</div>
+                  <div class="text-gray-600 leading-tight">Поліпшення настає через 40 хвилиня</div>
                 </div>
               </div>
               <div class="flex items-center gap-2">
